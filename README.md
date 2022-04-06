@@ -93,17 +93,18 @@ class MainActivity : AppCompatActivity() {
         // Fetch access token.
         fetchSecureToken { accessToken ->
             // Voxeet SDK OAuth initialization.
-            VoxeetSDK.initialize(accessToken) { _, callback ->
+            val token = accessToken ?: return@fetchSecureToken
+            VoxeetSDK.initialize(token) { _, callback ->
                 fetchSecureToken { accessToken ->
-                    val token = accessToken.takeIf { it.isNotEmpty() } ?: return@fetchSecureToken
                     // Call the SDK’s refresh closure with the new token
+                    val token = accessToken ?: return@fetchSecureToken
                     callback.ok(token)
                 }
             }
         }
     }
 
-    private fun fetchSecureToken(callback: (token: String) -> Unit) {
+    private fun fetchSecureToken(callback: (token: String?) -> Unit) {
         val serverURL = "<ENTER THE URL TO YOUR DEPLOYED TOKEN SERVICE>"
         // using Volley to initialize a queue
         val queue = Volley.newRequestQueue(this@MainActivity)
@@ -112,10 +113,13 @@ class MainActivity : AppCompatActivity() {
         var request = object : JsonObjectRequest(
             Request.Method.POST, serverURL, null,
             Response.Listener { response ->
-                Log.d("MainActivity", "Access token is: " + response.get("access_token"))
+                val token = response.get("access_token")
+                Log.d("MainActivity", "Access token is: $token")
+                callback(token as String)
             },
             Response.ErrorListener {
                 Log.e("MainActivity", "Request failed: ${it.localizedMessage}")
+                callback(null)
             }) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
