@@ -7,8 +7,8 @@ https://app.netlify.com/sites/<your-app-name>/settings/deploys
 to match CONSUMER_KEY, CONSUMER_SECRET
 */
 const SITE_URL = process.env.URL; // netlify provides this.
-console.log(SITE_URL);
-console.log(event.headers.origin);
+console.log(SITE_URL); //https://comms-demo-2023.netlify.app
+console.log(event);
 
 const APP_IDENTIFIER = process.env.APP_IDENTIFIER;
 const CONSUMER_KEY = process.env.CONSUMER_KEY;
