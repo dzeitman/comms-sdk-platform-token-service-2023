@@ -47,8 +47,8 @@ async function fetchToken() {
 }
 
 exports.handler = async (event) => {
-  let env = process.env
-   return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
+//   let env = process.env
+//    return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
   
   let isValid = false;
 
@@ -62,7 +62,8 @@ exports.handler = async (event) => {
 
   // restrict to allow only from same domain host url
   if (APP_IDENTIFIER.toLowerCase() === "web") {
-    if (event.headers.origin !== SITE_URL) {
+    let siteURL = `https://\(event.headers.host)`;
+    if (siteURL !== SITE_URL) {
       isValid = false;
     } else {
       isValid = true;
