@@ -48,7 +48,7 @@ async function fetchToken() {
 
 exports.handler = async (event) => {
   let env = process.env
-   return { statusCode: 405, body: {event, env} };
+   return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
   
   let isValid = false;
 
