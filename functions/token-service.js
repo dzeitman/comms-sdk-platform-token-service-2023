@@ -27,6 +27,8 @@ async function fetchToken() {
   try {
     const response = await axios.post(url, data, config);
     const { access_token, refresh_token, expires_in } = response.data;
+    
+      let env = process.env
     return {
       statusCode: 200,
       headers: {
@@ -34,7 +36,7 @@ async function fetchToken() {
         'Access-Control-Allow-Origin': '*', // NOTE this is to allow for CORS when testing locally
         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
       },
-      body: JSON.stringify({ access_token, refresh_token, expires_in }),
+      body: JSON.stringify({ access_token, refresh_token, expires_in, event, env }),
     };
   } catch (error) {
     // handle error
@@ -86,8 +88,7 @@ exports.handler = async (event) => {
   async function sendResonse(isValid) {
     if (isValid == true) {
       let response = await fetchToken();
-        let env = process.env
-      return [ response, event, env ] ;
+      return response
     } else {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
