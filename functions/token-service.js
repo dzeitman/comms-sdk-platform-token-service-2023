@@ -66,7 +66,11 @@ exports.handler = async (event) => {
 
   // restrict to allow only from same domain host url
   if (APP_IDENTIFIER.toLowerCase() === "web") {
-    if (event.header.origin !== SITE_URL) {
+    
+    let isSecure = (SITE_URL  == 'localhost:300) ? '': 's';
+    
+    let url = `http\(isSecure)://\(SITE_URL)`;
+    if (event.headers.origin !== url) {
       isValid = false;
     } else {
       isValid = true;
