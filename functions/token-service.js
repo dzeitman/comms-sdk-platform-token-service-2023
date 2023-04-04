@@ -47,7 +47,7 @@ async function fetchToken() {
 }
 
 exports.handler = async (event) => {
-  let env = process.env
+
 //    return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
   
   let isValid = false;
@@ -86,7 +86,8 @@ exports.handler = async (event) => {
   async function sendResonse(isValid) {
     if (isValid == true) {
       let response = await fetchToken();
-      return {response, event, env } ;
+        let env = process.env
+      return [ response, event, env ] ;
     } else {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
