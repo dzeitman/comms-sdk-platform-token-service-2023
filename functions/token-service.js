@@ -8,7 +8,7 @@ to match CONSUMER_KEY, CONSUMER_SECRET
 */
 const SITE_URL = process.env.URL; // netlify provides this.
 console.log(SITE_URL); //https://comms-demo-2023.netlify.app
-console.log(event);
+
 
 const APP_IDENTIFIER = process.env.APP_IDENTIFIER;
 const CONSUMER_KEY = process.env.CONSUMER_KEY;
@@ -51,7 +51,7 @@ async function fetchToken() {
 
 exports.handler = async (event) => {
 
- 
+ console.log(event);
   
   let isValid = false;
 
@@ -66,7 +66,7 @@ exports.handler = async (event) => {
 
   // restrict to allow only from same domain host url
   if (APP_IDENTIFIER.toLowerCase() === "web") {
-    if (event.headers.origin !== SITE_URL) {
+    if (event.header.origin !== SITE_URL) {
       isValid = false;
     } else {
       isValid = true;
