@@ -61,25 +61,25 @@ exports.handler = async (event) => {
 
 
   // restrict to allow only from same domain host url
-  if (APP_IDENTIFIER.toLowerCase() === "web") {
-    let siteURL = `https://\(event.headers.host)`;
-    if (siteURL !== SITE_URL) {
-      isValid = false;
-    } else {
-      isValid = true;
-      return sendResonse(isValid);
-    }
-  }
+//   if (APP_IDENTIFIER.toLowerCase() === "web") {
+//     let siteURL = `https://\(event.headers.host)`;
+//     if (siteURL !== SITE_URL) {
+//       isValid = false;
+//     } else {
+//       isValid = true;
+//       return sendResonse(isValid);
+//     }
+//   }
 
  
 
   // restrict to allow only from same domain host url
-  if (event.headers.appidentifier !== APP_IDENTIFIER) {
-    isValid = false;
-  } else {
-    isValid = true;
-    return sendResonse(isValid);
-  }
+//   if (event.headers.appidentifier !== APP_IDENTIFIER) {
+//     isValid = false;
+//   } else {
+//     isValid = true;
+//     return sendResonse(isValid);
+//   }
 
   return sendResonse(false);
 
