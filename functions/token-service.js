@@ -59,7 +59,7 @@ exports.handler = async (event) => {
     isValid = true;
   }
   
-  return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
+  return { statusCode: 200, body: JSON.stringify({event, env}, null , 5) };
 
   // restrict to allow only from same domain host url
 //   if (APP_IDENTIFIER.toLowerCase() === "web") {
