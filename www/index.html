@@ -1,74 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webservice</title>
-</head>
-
-<body>
-<h2>Token Service:</h2>
-    <a href="/api/token-service/">
-        Token Service Endpoint
-    </a>
-    <p>Click this Link to reach the token service endpoint.</p>
-    <p>Copy that URL to use as your Token Service endpoint.</p>
-
-    <H2>Alternatively you can create a Developer Token with the handy bookmarklet:</H2>
-    <p>
-        Step 1: Open this page in Chrome:
-    </p>
-
-    <p>
-        Step 2: Select View -> Always show Bookmarks Bar
-    </p>
-    <p>
-        Step 3: Drag this link to the Bookmarks Bar of the Chrome Browser.
-    </p>
-
-    <p>
-        <a href="javascript:(() => {
-        let delay = ms => new Promise(res => setTimeout(res, ms)); let button = document.querySelectorAll('button')[2];
-        button.addEventListener('click', async (event) => {
-            let done = await delay(3000);
-            let key = document.querySelectorAll('input')[0].value;
-            let secret = document.querySelectorAll('input')[1].value;
-            var credentials = btoa(key + ':' + secret);
-            let expiry = (3600 * 24 * 2);
-            fetch('https://session.voxeet.com/v1/oauth2/token', {
-                method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Basic ' + credentials }, body: JSON.stringify({ grant_type: 'client_credentials', expires_in: expiry })
-            }).then(response => response.json()).then(data => {
-                console.log('Success:', data, data['access_token']);
-                navigator.clipboard.writeText(data['access_token']).then(() => { console.log('Text copied to clipboard...'); alert(`${ data['access_token'] } was written to the clipboard`);}).catch(err => { console.log('Something went wrong', err);})
-            }).catch((error) => { console.error('Error:', error); alert('Error:', error); });
-        });
-        button.click();
-    })();">
-            Generate Developer Token - Dolby.io Comms API
-        </a>
-    </p>
-
-    <p>
-        Step 4: Open <a href="https://dashboard.dolby.io/dashboard/applications/summary">Dolby.io Dashboard</a> and
-        create a new project or select an existing project.
-    </p>
-
-    <p>
-        Step 5: Click the link to display the API Keys.
-        Once the page loads, click on the "Generate Developer Token - Dolby.io Comms API" bookmark to generate a 48 hr
-        token.
-    </p>
-    <p>
-        Paste the token into your project's constants settings to initalize the SDK. See example below.
-    </p>
-
-    <code>
-        let API_TOKEN = "<REPLACE-WITH-YOUR-DEVELOPER-TOKEN>"
-    </code>
- 
-
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=3,user-scalable=no"
+      name="viewport"
+    />
+    <link rel="icon" href="/DolbyIO-favicon-32x32.webp" sizes="32x32" />
+    <link rel="icon" href="/DolbyIO-favicon-192x192.webp" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/DolbyIO-favicon-180x180.webp" />
+    <meta name="msapplication-TileImage" content="/DolbyIO-favicon-270x270.webp" />
+    <title>Dolby.io Video Call</title>
+    <style>
+      #root {
+        min-height: 100% !important;
+        height: 100% !important;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index.d0d49726.js"></script>
+    <link rel="stylesheet" href="/assets/index.d11e1a4c.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+  </body>
 </html>
