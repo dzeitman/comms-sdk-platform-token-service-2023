@@ -26,6 +26,8 @@ const config = {
 
 const data = { grant_type: 'client_credentials', expires_in: 3600 };
 
+
+
 async function fetchToken() {
   try {
     const response = await axios.post(url, data, config);
@@ -49,6 +51,13 @@ async function fetchToken() {
   }
 }
 
+
+function isHostInUrl(url, hostname) {
+  const urlObj = new URL(url);
+  return urlObj.hostname === hostname;
+}
+
+
 exports.handler = async (event) => {
 
  console.log(event);
@@ -66,11 +75,7 @@ exports.handler = async (event) => {
 
   // restrict to allow only from same domain host url
   if (APP_IDENTIFIER.toLowerCase() === "web") {
-    
-    let isSecure = (SITE_URL  === 'localhost:3000') ? '' : 's';
-    
-    let url = `http\(isSecure)://\(SITE_URL)`;
-    if (event.headers.origin !== url) {
+    if (!isHostInUrl(event.headers.origin, event.headers.host)) {
       isValid = false;
     } else {
       isValid = true;
