@@ -81,7 +81,7 @@ exports.handler = async (event) => {
 //     return sendResonse(isValid);
 //   }
 
-  return sendResonse(false);
+  return sendResonse(isValid);
 
   async function sendResonse(isValid) {
     if (isValid == true) {
