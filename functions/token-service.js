@@ -24,11 +24,11 @@ const config = {
 const data = { grant_type: 'client_credentials', expires_in: 3600 };
 
 async function fetchToken() {
+    
+      let env = process.env;
   try {
     const response = await axios.post(url, data, config);
     const { access_token, refresh_token, expires_in } = response.data;
-    
-      let env = process.env
     return {
       statusCode: 200,
       headers: {
@@ -36,7 +36,7 @@ async function fetchToken() {
         'Access-Control-Allow-Origin': '*', // NOTE this is to allow for CORS when testing locally
         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
       },
-      body: JSON.stringify({ access_token, refresh_token, expires_in, event, env }),
+      body: JSON.stringify({ access_token, refresh_token, expires_in. event, env}),
     };
   } catch (error) {
     // handle error
