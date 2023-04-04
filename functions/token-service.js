@@ -24,8 +24,6 @@ const config = {
 const data = { grant_type: 'client_credentials', expires_in: 3600 };
 
 async function fetchToken() {
-    
-      let env = process.env;
   try {
     const response = await axios.post(url, data, config);
     const { access_token, refresh_token, expires_in } = response.data;
@@ -36,7 +34,7 @@ async function fetchToken() {
         'Access-Control-Allow-Origin': '*', // NOTE this is to allow for CORS when testing locally
         'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
       },
-      body: JSON.stringify({ access_token, refresh_token, expires_in. event, env}),
+      body: JSON.stringify({ access_token, refresh_token, expires_in}),
     };
   } catch (error) {
     // handle error
@@ -50,7 +48,7 @@ async function fetchToken() {
 
 exports.handler = async (event) => {
 
-//    return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
+ 
   
   let isValid = false;
 
@@ -60,7 +58,8 @@ exports.handler = async (event) => {
   } else {
     isValid = true;
   }
-
+  
+  return { statusCode: 405, body: JSON.stringify({event, env}, null , 5) };
 
   // restrict to allow only from same domain host url
 //   if (APP_IDENTIFIER.toLowerCase() === "web") {
