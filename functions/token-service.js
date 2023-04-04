@@ -59,6 +59,7 @@ exports.handler = async (event) => {
     isValid = true;
   }
   
+  let env = process.env;
   return { statusCode: 200, body: JSON.stringify({event, env}, null , 5) };
 
   // restrict to allow only from same domain host url
