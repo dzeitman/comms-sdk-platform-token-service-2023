@@ -3,13 +3,18 @@
 This is a simple ready to deploy a [Video Conference Application](https://github.com/dolbyio-samples/comms-app-react-videocall) that uses Dolby.io Communications APIs.
 The deployable react application demonstrates the use of a simple token server function to secure the Dolby.io API, suitable for Native Mobile (iOS and Android) and web applcations. We'll show a full featued video conference app using Netlify for hosting both the application and token service this example.  This sample application creates a simple token server to secure your application calls to the Dolby.io API. 
 
+Steps to deploy
+- 1. Singup for Dolby.io
+- 2. Sign up and login into Netlify.com
+- 3. Click the **Deploy to Netlify** button; Authenticate with GitHub and then supply your application's unique **identifier** and your Dolby.io Consumer key and secret. These values will be used to setup the **Environment** variables on the Netlify server.   This configuration uses that unique app identifier as a gate for the web service.  All requests to this serverless endpoint will require the request to be a POST and contain a header called **appidentifier** that matches the values you entered for the environmental variable. 
 
 [![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dzeitman/comms-sdk-platform-token-service-2023)
 
 
-Click the **Deploy to Netlify** button; Authenticate with GitHub and then supply your application's unique **identifier** and your Dolby.io Consumer key and secret. These values will be used to setup the **Environment** variables on the Netlify server.   This configuration uses that unique app identifier as a gate for the web service.  All requests to this serverless endpoint will require the request to be a POST and contain a header called **appidentifier** that matches the values you entered for the environmental variable. 
-
 Suggested Identifiers:
+
+web:
+Web or your domain mame. 
 
 iOS:
 Use the bundle identifier.
