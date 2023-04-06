@@ -1,10 +1,8 @@
-# Dolby.io Platform Token Service
+# Dolby.io Comms Platform Application with Token Service
 
-  
+This is a simple ready to deploy a (Video Conference Application](https://github.com/dolbyio-samples/comms-app-react-videocall) that uses Dolby.io Communications APIs
+The deployable react application demonstrates the use of a simple token server function to secure the Dolby.io API, suitable for Native Mobile (iOS and Android) and web applcations. We'll show a full featued video conference app using Netlify for hosting both the application and token service this example.  This sample application creates a simple token server to secure your application calls to the Dolby.io API. 
 
-A simple token server function to secure the Dolby.io API, suitable for Native Mobile (iOS and Android) and web applcations. We'll use Netlify for this example.  This sample application creates a simple token server to secure your application calls to the Dolby.io API.
-
-  
 
 [![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dzeitman/comms-sdk-platform-token-service-2023)
 
