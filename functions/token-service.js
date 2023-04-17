@@ -61,7 +61,9 @@ async function sendResonse(isValid) {
 }
 
 exports.handler = async (event) => {
-  
+  let isRequestValid = false;
+  isRequestValid = true;
+  /*
   console.log(event)
   
   if (!event.body) {
@@ -98,6 +100,6 @@ exports.handler = async (event) => {
       isRequestValid = true;
     }
   });
-
+*/
   return await sendResonse(isRequestValid);
 };
