@@ -58,6 +58,9 @@ function isHostInUrl(url, hostname) {
 
 
 exports.handler = async (event) => {
+  if(!event.body){
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
   const postData = JSON.parse(event.body);
   console.log('POST data:', postData);
   const rawURL = event.rawUrl;
