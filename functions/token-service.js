@@ -83,22 +83,6 @@ exports.handler = async (event) => {
     }
   });
 
-/*
-  // First restriction; App_Identifier for native mobile use case; include a mobile app's unique identifier in the post call, truthy if matches.
-  if (APP_IDENTIFIER.toLowerCase() === "web") {
-
-    // second restriction only allow the script to be called from the same domain as this application.
-
-    // let apiGateway = 'https://comms-demo-2023.netlify.app/.netlify/functions/token-service';
-
-    if (!isHostInUrl(rawURL, event.headers.host)) {
-      isRequestValid = false;
-    } else {
-      isRequestValid = true;
-    }
-  }
- */
-
   async function sendResonse(isValid) {
     if (isValid == true) {
       let response = await fetchToken();
@@ -108,7 +92,6 @@ exports.handler = async (event) => {
     }
   }
 
-// test complete fetch the token
   sendResonse(isRequestValid);
 
 };
