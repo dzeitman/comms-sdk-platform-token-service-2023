@@ -61,7 +61,9 @@ async function sendResonse(isValid) {
 }
 
 exports.handler = async (event) => {
-
+  
+  console.log(event)
+  
   if (!event.body) {
     console.log("Method Not Allowed: No Event.Body")
     return { statusCode: 405, body: "Method Not Allowed: No Event.Body" };
