@@ -83,7 +83,7 @@ exports.handler = async (event) => {
     }
   });
 
-
+/*
   // First restriction; App_Identifier for native mobile use case; include a mobile app's unique identifier in the post call, truthy if matches.
   if (APP_IDENTIFIER.toLowerCase() === "web") {
 
@@ -97,7 +97,7 @@ exports.handler = async (event) => {
       isRequestValid = true;
     }
   }
- 
+ */
 
   async function sendResonse(isValid) {
     if (isValid == true) {
