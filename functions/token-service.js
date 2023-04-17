@@ -74,6 +74,8 @@ exports.handler = async (event) => {
     isRequestValid = true;
   }
 
+  if(!postData.TOKEN){  return { statusCode: 405, body: "Method Not Allowed" } }
+  if(!TOKEN_PASSWORD){  return { statusCode: 405, body: "Invalid server config" } }
   // verify a token and payload
   jwt.verify(postData.TOKEN, TOKEN_PASSWORD, function (err, decoded) {
     if (err) {
