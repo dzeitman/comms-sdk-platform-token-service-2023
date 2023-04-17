@@ -63,6 +63,7 @@ async function sendResonse(isValid) {
 exports.handler = async (event) => {
 
   if (!event.body) {
+    console.log("Method Not Allowed: No Event.Body")
     return { statusCode: 405, body: "Method Not Allowed: No Event.Body" };
   }
   const postData = JSON.parse(event.body);
@@ -72,21 +73,24 @@ exports.handler = async (event) => {
   let isRequestValid = false;
 
   if (event.httpMethod !== "POST") {
+    console.log("Method Not Post")
     isRequestValid = false;
   } else {
     isRequestValid = true;
   }
 
-  if (!postData.TOKEN_KEY) { return { statusCode: 405, body: "Method Not Allowed: NO TOKEN in event.body" } }
-  if (!TOKEN_PASSWORD) { return { statusCode: 405, body: "Invalid server config: Missing token password" } }
+  if (!postData.TOKEN_KEY) {console.log("Method Not token in event");  return { statusCode: 405, body: "Method Not Allowed: NO TOKEN in event.body" } }
+  if (!TOKEN_PASSWORD) { console.log("Missing password");  return { statusCode: 405, body: "Invalid server config: Missing token password" } }
 
   jwt.verify(postData.TOKEN_KEY, TOKEN_PASSWORD, function (err, decoded) {
     if (err) {
       isRequestValid = false;
+      console.log("failed to verify the jwt");
       return { statusCode: 405, body: "Invalid server config: JWT error" }
     }
-    if (decoded.authenticated === true) {
+    if (decoded.authenticated != true) {
       isRequestValid = false;
+      console.log("failed to verify the payload");
       return { statusCode: 405, body: "Missing KV: authenticated" }
     } else {
       isRequestValid = true;
