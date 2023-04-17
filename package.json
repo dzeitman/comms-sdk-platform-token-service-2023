@@ -4,7 +4,8 @@
   "description": "Dolby.io iOS Getting Started Guide - Token Server",
   "dependencies": {
     "axios": "^0.22.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "jsonwebtoken": "^9.0.0"
   },
 
   "scripts": {
